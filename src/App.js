@@ -4,16 +4,22 @@ import Login from './components/Login';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import WhatsAppQRModal from './components/WhatsAppQRModal';
+import LeadCapturePage from './views/LeadCapturePage';
 
-// Core imports
+// Core views
 import DashboardView from './views/DashboardView';
 import UsersView from './views/UsersView';
 import CategoryView from './views/CategoryView';
 import ProductsView from './views/ProductsView';
 import CouponView from './views/CouponView';
 import OrdersView from './views/OrdersView';
+import SettingView from './views/SettingView';
+import OtpJunctionView from './views/OtpJunctionView';
 
 export default function App() {
+  const isLeadCaptureRoute = window.location.pathname === '/lead-capture';
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('isAdminLoggedIn') === 'true';
   });
@@ -23,6 +29,10 @@ export default function App() {
   });
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  if (isLeadCaptureRoute) {
+    return <LeadCapturePage />;
+  }
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
@@ -49,6 +59,8 @@ export default function App() {
       case 'product': return <ProductsView />;
       case 'coupon': return <CouponView />;
       case 'orders': return <OrdersView />;
+      case 'setting': return <SettingView />;
+      case 'otp-junction': return <OtpJunctionView />;
       default: return <DashboardView />;
     }
   };
@@ -65,6 +77,8 @@ export default function App() {
         <main className="content-area">{renderActiveView()}</main>
         <Footer />
       </div>
+
+      <WhatsAppQRModal />
     </div>
   );
 }

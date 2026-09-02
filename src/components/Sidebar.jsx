@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from "../assets/logo.png"
-import minilogo from "../assets/minilogo.png"
+import logo from "../assets/logo.png";
+import minilogo from "../assets/minilogo.png";
 
 import { 
   LayoutDashboard,
@@ -8,6 +8,8 @@ import {
   Grid, 
   ShoppingBag, 
   Ticket,
+  MessageSquare,
+  Settings,
   LogOut
 } from 'lucide-react';
 
@@ -25,6 +27,8 @@ export default function Sidebar({
     { id: 'category', label: 'Categories', icon: Grid },
     { id: 'product', label: 'Products', icon: ShoppingBag },
     { id: 'coupon', label: 'Coupons', icon: Ticket },
+    { id: 'otp-junction', label: 'WhatsApp OTP Junction', icon: MessageSquare },
+    { id: 'setting', label: 'Settings', icon: Settings },
   ];
 
   return (
